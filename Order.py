@@ -128,7 +128,11 @@ def get_needed_time(create_time, order):
 
 
 if __name__ == '__main__':
-    os.chdir(start_dir)
+    try:
+        os.chdir(start_dir)
+    except FileNotFoundError:
+        print("Директории не существует. Создаём...")
+        os.mkdir(start_dir)
     print(os.getcwd())
     parser = create_parser()
     namespace = parser.parse_args()
