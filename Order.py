@@ -8,7 +8,6 @@ home_dir = os.path.expanduser('~')
 
 start_dir = home_dir + '/Неразобранное/'
 archives = home_dir + '/Архивы/'
-images = home_dir + '/Изображения/'
 musics = home_dir + '/Музыка/'
 videos = home_dir + '/Видео/'
 docs = home_dir + '/Документы/'
@@ -17,7 +16,6 @@ packages = home_dir + '/Пакеты/'
 
 file_types = {
     'archive': ['.zip', '.tar.gz', '.tar', '.tar.bz', '.7z', '.rar', 'tar.xz'],
-    'image': ['.jpg', '.jpeg', '.gif', '.png'],
     'music': ['.mp3', '.flac'],
     'video': ['.mp4', '.mov', '.avi', '.mkv'],
     'document': ['.log', '.txt', '.doc', '.odt', '.docx', '.pdf'],
@@ -55,7 +53,6 @@ def replace_controller(path: str, recursive: bool):
 def replace_by_type(path: str, file):
     results = {
         'is_archive': archives,
-        'is_image': images,
         'is_music': musics,
         'is_video': videos,
         'is_document': docs,
