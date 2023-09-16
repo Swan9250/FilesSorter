@@ -5,7 +5,7 @@ import json  # Для работы с json
 import datetime  # Для работы со временем
 import os.path
 
-from Image import Image
+from app.views.Image import Image
 
 
 class Mysql:
@@ -64,6 +64,33 @@ class Mysql:
             )
         except Exception as e:
             print(f"Insert error: {e}")
+
+    def find_one(self, name: str):
+        if self.connection.is_closed():
+            self.__connect()
+        try:
+            self.cursor.execute(
+                """
+                SELECT * FROM sorted_files
+                WHERE name=%s
+                """, (name,)
+            )
+        except Exception as e:
+            print(f"Select error: {e}")
+        return self.parse_from_db(self.cursor.fetchone())
+
+    @staticmethod
+    def parse_from_db(result):  # only for fetchone
+        if result is not None:
+            obj = Image(result[1])
+            obj.id = result[0]
+            obj.size = result[2]
+            obj.file_type = result[3]
+            obj.created = result[4]
+            obj.last_modified = result[5]
+            obj.path = result[7]
+            return obj
+        return None
 
     def close(self):  # Закрываем соединение
         self.connection.close()

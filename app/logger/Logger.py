@@ -10,7 +10,7 @@ class Logger:
     def __init__(self, name, level):
         self.logger = logging.getLogger(name)  # Имя файла
         self.logger.setLevel(level)  # Устанавливаем уровень отображения ошибок
-        self.handler = RotatingFileHandler(f"{self.LOG_PATH}{name}.log", maxBytes=2000,
+        self.handler = RotatingFileHandler(f"{self.LOG_PATH}{name}.log", maxBytes=20000,
                                            backupCount=10)  # Обрабатывает файл с логами по указанному пути, с указанным размером и максимальным количеством файлов.
         self.formatter = logging.Formatter(
             "%(asctime)s %(name)s %(levelname)s %(filename)s:%(lineno)s method: %(funcName)s() %(message)s")  # Формат записи в лог. Время, имя файла, уровень ошибки, сообщение.

@@ -4,7 +4,7 @@ from typing import Optional
 from app.views.BaseFile import BaseFile
 
 
-class ApiBuilder:
+class BaseApiTranslator:
     TYPE_JSON = 'json'
     TYPE_HTTP = 'http'
     TYPE_GRPC = 'grpc'
@@ -21,13 +21,14 @@ class ApiBuilder:
 
     def set_operation(self, operation: str):
         self.operation = operation
+        return self
 
     @staticmethod
     def convert_from_json(request: json) -> Optional[BaseFile]:
         info = json.loads(request)
         if 'id' in info.keys() and info.get('id') != 0:
             file = BaseFile(file_id=info.get('id'))
-        elif 'name' in request.keys() and request.get('name') != "":
+        elif 'name' in info.keys() and info.get('name') != "":
             file = BaseFile(name=info.get('name'))
         else:
             return
