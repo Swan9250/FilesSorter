@@ -18,7 +18,7 @@ class Migration01:  # Тренирую в питоне технологии yii2
             CREATE TABLE IF NOT EXISTS sorted_files(
             file_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
             name VARCHAR(255),
-            size INT,
+            size VARCHAR(255),
             file_type VARCHAR(30),
             created DATETIME,
             last_modified DATETIME,

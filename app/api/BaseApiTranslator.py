@@ -26,10 +26,8 @@ class BaseApiTranslator:
     @staticmethod
     def convert_from_json(request: json) -> Optional[BaseFile]:
         info = json.loads(request)
-        if 'id' in info.keys() and info.get('id') != 0:
-            file = BaseFile(file_id=info.get('id'))
-        elif 'name' in info.keys() and info.get('name') != "":
-            file = BaseFile(name=info.get('name'))
+        if 'path' in info.keys() and info.get('path') != "":
+            file = BaseFile(path=info.get('path'))
         else:
             return
         return file

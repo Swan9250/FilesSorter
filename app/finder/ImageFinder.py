@@ -14,5 +14,5 @@ class ImageFinder:
         self.db = Database.Mysql()
 
     def run(self, image: Image) -> Optional[tuple]:
-        return self.db.find_one(image.name)
+        return self.db.find_one(image.path)
 

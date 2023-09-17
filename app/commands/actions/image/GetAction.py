@@ -1,8 +1,6 @@
 import argparse
 import json
 
-from typing import Optional
-
 from app.api.ImageApiTranslator import ImageApiTranslator
 from app.getter.ImageGetter import ImageGetter
 from app.logger.Logger import Logger
