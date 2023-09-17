@@ -23,7 +23,8 @@ class ImageGetter:
     def run(self):
         image_list = self.search()
         if len(image_list) > 1:
-            print(image_list)
+            for ima in image_list:
+                print(ima.path)
             your = image_list[random.randrange(0, len(image_list), 1)]  # Функция randrange(start, stop, width) не
             # включает параметр конца при генерации случайного целого числа. Параметр stop является эксклюзивным и не
             # генерируется случайным числом.
@@ -69,21 +70,20 @@ class ImageGetter:
 
     def make_image_objects(self, image_files: list):
         for file in image_files:
-            image = Image(file.name).set_path(file.path)
+            image = Image(file.path)
             self.images.append(image)
         for img in self.images:
             self.logger.info(img.path)
         return self.images
 
     def already_in_db(self, image: posix.DirEntry) -> bool:
-        file_in_base = Mysql().find_one(image.name)
+        file_in_base = Mysql().find_one(image.path)
         if file_in_base:
-            if os.stat(file_in_base.path).st_ino == image.stat().st_ino:
-                return True
-            else:
-                self.logger.info(
-                    f"file_in_base inode: {os.stat(file_in_base.path).st_ino}, getting_file inode: {image.stat().st_ino}"
-                )
+            return True
+        else:
+            self.logger.info(
+                f"File {image.path} not found in database"
+            )
         return False
 
 

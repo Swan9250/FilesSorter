@@ -62,18 +62,19 @@ class Mysql:
                     comment
                 )
             )
+            self.connection.commit()
         except Exception as e:
             print(f"Insert error: {e}")
 
-    def find_one(self, name: str):
+    def find_one(self, path: str):
         if self.connection.is_closed():
             self.__connect()
         try:
             self.cursor.execute(
                 """
                 SELECT * FROM sorted_files
-                WHERE name=%s
-                """, (name,)
+                WHERE path=%s
+                """, (path,)
             )
         except Exception as e:
             print(f"Select error: {e}")
@@ -82,13 +83,13 @@ class Mysql:
     @staticmethod
     def parse_from_db(result):  # only for fetchone
         if result is not None:
-            obj = Image(result[1])
+            obj = Image(result[7])
             obj.id = result[0]
+            obj.name = result[1]
             obj.size = result[2]
             obj.file_type = result[3]
             obj.created = result[4]
             obj.last_modified = result[5]
-            obj.path = result[7]
             return obj
         return None
 
