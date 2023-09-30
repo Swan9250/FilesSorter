@@ -1,0 +1,3 @@
+[submodule "vendor/api-FilesSorter"]
+	path = vendor/api-FilesSorter
+	url = git@github.com:Swan9250/api-FilesSorter.git

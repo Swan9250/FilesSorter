@@ -10,7 +10,7 @@ class ImageApiTranslator(BaseApiTranslator):
         super().__init__()
 
     def match_api(self):
-        with open('/root/projects/FilesSorter/app/api/ImageApi.json', 'r') as api_template:
+        with open('/root/projects/FilesSorter/vendor/api-FilesSorter/ImageApi.json', 'r') as api_template:
             api = json.loads(api_template.read())
             match self.operation:
                 case 'FindOne':
