@@ -4,4 +4,5 @@ class Init:
 		pass
 
 	def run(self, request):
-		print request
+		print("YOU ARE HERE")
+		print(request)
