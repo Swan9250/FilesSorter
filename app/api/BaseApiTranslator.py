@@ -14,10 +14,10 @@ class BaseApiTranslator:
         self.request = None
         self.response = None
 
-    def match_type(self, api_type: str):
-        match api_type:
-            case self.TYPE_JSON:
-                pass
+    # def match_type(self, api_type: str):
+    #     match api_type:
+    #         case self.TYPE_JSON:
+    #             return self.convert_from_json()
 
     def set_operation(self, operation: str):
         self.operation = operation
@@ -29,7 +29,7 @@ class BaseApiTranslator:
         if 'path' in info.keys() and info.get('path') != "":
             file = BaseFile(path=info.get('path'))
         else:
-            return
+            return info
         return file
 
     @staticmethod
