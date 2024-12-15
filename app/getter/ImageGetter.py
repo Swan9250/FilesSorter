@@ -4,7 +4,7 @@ import posix
 
 from app.views.Image import Image
 from app.api.BaseApiTranslator import BaseApiTranslator
-from app.logger.Logger import Logger
+from FilesSorter.app.logger.Logger import Logger
 from app.base.db.mysql.Database import Mysql
 
 home_dir = os.path.expanduser('~')
@@ -45,6 +45,7 @@ class ImageGetter:
         else:
             self.logger.info('default mode')
         image_files = self.search_recursion([current_dir])
+        print(image_files)
         return self.make_image_objects(image_files)
 
     def search_recursion(self, dirs_list=None, find_images=None):

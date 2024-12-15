@@ -1,12 +1,12 @@
 import json
-from app.api.ImageApiTranslator import ImageApiTranslator
-from app.getter.ImageGetter import ImageGetter
+from FilesSorter.app.api.ImageApiTranslator import ImageApiTranslator
+from FilesSorter.app.getter.ImageGetter import ImageGetter
 
 
 class Init:
 	def __init__(self):
 		self.translator = ImageApiTranslator()
-		self.getter = ImageGetter()
+		self.getter = ImageGetter(recursive=True, max_depth=2)
 		self.space = None
 		self.protocol = None
 		self.base_type = None

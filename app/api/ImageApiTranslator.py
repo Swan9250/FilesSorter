@@ -26,3 +26,13 @@ class ImageApiTranslator(BaseApiTranslator):
                     self.request = {}
                     self.response = {}
 
+    def comparsion_request(self, request_dict) -> bool:
+        if request_dict.get('GetOneRequest') == self.request:
+            return True
+        return False
+
+    def comparsion_response(self, response_json) -> bool:
+        if response_json == self.response:
+            return True
+        return False
+
